@@ -36,4 +36,23 @@ shared_examples_for :has_slug_functionality do
       expect(obj.to_param).to eq('passed-slug')
     end
   end
+
+  describe ".find_by_slug" do
+    context 'when record is available to be found' do
+      before do
+        User.create(slug: 'named-slug')
+      end
+
+      specify 'record is returned' do
+        record = described_class.find_by_slug('named-slug')
+        expect(record).to be_present
+      end
+    end
+
+    context 'when record is not found' do
+      specify 'error is returned' do
+        expect { described_class.find_by_slug('named-slug') }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end
