@@ -40,7 +40,8 @@ shared_examples_for :has_slug_functionality do
   describe ".find_by_slug" do
     context 'when record is available to be found' do
       before do
-        described_class.create(slug: 'named-slug')
+        record = described_class.new(slug: 'named-slug')
+        record.save(validate: false)
       end
 
       specify 'record is returned' do
