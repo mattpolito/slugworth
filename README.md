@@ -47,6 +47,22 @@ This provides most of the default slug functionality you would need.
 * `#to_param` has been defined as a paramaterized version of the attribute declared to `slugged_with`.
 * Validations stating that slug is present and unique in the database.
 
+## Test Helper
+
+To aid in testing your models that implement the Slugworth functionality, I've added a shared example group that can be added to your test suite. Add this to your `spec_helper.rb`
+
+```ruby
+include 'slugworth_shared_examples'
+```
+
+And then in your specs just add:
+
+```ruby
+it_behaves_like :has_slug_functionality
+```
+
+This will add the same specs to your model that get run on Slugworth itself!
+
 ## Contributing
 
 1. Fork it
