@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'slugworth/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "Slugworth"
+  spec.name          = "slugworth"
   spec.version       = Slugworth::VERSION
   spec.authors       = ["Matt Polito"]
   spec.email         = ["matt.polito@gmail.com"]
