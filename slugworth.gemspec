@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sluggle/version'
+require 'slugworth/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "sluggle"
-  spec.version       = Sluggle::VERSION
+  spec.name          = "Slugworth"
+  spec.version       = Slugworth::VERSION
   spec.authors       = ["Matt Polito"]
   spec.email         = ["matt.polito@gmail.com"]
   spec.description   = %q{Easy slug functionality}
   spec.summary       = %q{Easy slug functionality}
-  spec.homepage      = "https://github.com/mattpolito/sluggle"
+  spec.homepage      = "https://github.com/mattpolito/slugworth"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
