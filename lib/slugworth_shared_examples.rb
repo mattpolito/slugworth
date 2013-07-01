@@ -40,7 +40,7 @@ shared_examples_for :has_slug_functionality do
   describe ".find_by_slug" do
     context 'when record is available to be found' do
       before do
-        User.create(slug: 'named-slug')
+        described_class.create(slug: 'named-slug')
       end
 
       specify 'record is returned' do
