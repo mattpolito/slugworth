@@ -1,0 +1,9 @@
+# Changelog
+
+## 1.0.1
+
+- [Bug fix] Shared example had `User` class hard coded
+
+## 1.0.0
+
+- Initial functionality
