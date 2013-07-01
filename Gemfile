@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in sluggle.gemspec
+# Specify your gem's dependencies in slugworth.gemspec
 gemspec

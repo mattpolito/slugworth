@@ -1,6 +1,6 @@
-require "sluggle/version"
+require "slugworth/version"
 
-module Sluggle
+module Slugworth
   extend ActiveSupport::Concern
 
   included do

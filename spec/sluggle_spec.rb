@@ -1,13 +1,13 @@
 require 'spec_helper'
-require 'sluggle_shared_examples'
-require 'sluggle'
+require 'slugworth_shared_examples'
+require 'slugworth'
 
 ActiveRecord::Base.connection.execute(
   %{CREATE TABLE users (id INTEGER PRIMARY KEY, name STRING, slug STRING);}
 )
 
 class User < ActiveRecord::Base
-  include Sluggle
+  include Slugworth
   slugged_with :name
 end
 
