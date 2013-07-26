@@ -1,4 +1,4 @@
-# Slugworth
+![Slugworth](http://f.cl.ly/items/3T1K3g040S0u2l0G0d3V/slugworth_header.png)
 
 [![Gem Version](https://badge.fury.io/rb/slugworth.png)](http://badge.fury.io/rb/sluggle)
 [![Build Status](https://travis-ci.org/mattpolito/slugworth.png?branch=master)](https://travis-ci.org/mattpolito/sluggle)
@@ -70,3 +70,9 @@ This will add the same specs to your model that get run on Slugworth itself!
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Thanks
+
+* [Rye Mason][] for the fantastic heading image.
+
+[Rye Mason]: https://github.com/ryenotbread
