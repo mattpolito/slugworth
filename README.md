@@ -32,7 +32,7 @@ install it yourself with
 
 Getting started is easy! Just ensure that your model has a database column of type `String` called `slug`
 
-To use just add two declarations to your module and away you go!
+To use, just add two declarations to your `ActiveRecord` class and away you go!
 
 ```ruby
 class User < ActiveRecord::Base
@@ -41,11 +41,13 @@ class User < ActiveRecord::Base
 end
 ```
 
+After you `include` the `Slugworth` module, all you need to do is declare what method will be used to create the slug. The method passed to `slugged_with` will then be paramterized.
+
 This provides most of the default slug functionality you would need.
 
 * A finder `.find_by_slug` is provided. This will, of course, do what you expect and find a single record by the slug attribute provided. However, it will throw an `ActiveRecord::RecordNotFound` exception... if not found.
 * `#to_param` has been defined as a paramaterized version of the attribute declared to `slugged_with`.
-* Validations stating that slug is present and unique in the database.
+* Validations stating that `slug` is present and unique in the database.
 
 ## Test Helper
 
