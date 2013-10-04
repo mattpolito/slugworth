@@ -23,6 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 2.13"
   spec.add_development_dependency 'activerecord', '~> 4.0.0'
   spec.add_development_dependency "pry"
-  spec.add_development_dependency "database_cleaner"
+  spec.add_development_dependency "database_cleaner", '~> 1.0.1'
   spec.add_development_dependency "sqlite3"
 end
