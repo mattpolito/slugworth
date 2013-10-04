@@ -51,8 +51,12 @@ shared_examples_for :has_slug_functionality do
     end
 
     context 'when record is not found' do
-      specify 'error is returned' do
-        expect { described_class.find_by_slug('named-slug') }.to raise_error(ActiveRecord::RecordNotFound)
+      specify 'nil is returned' do
+        expect(described_class.find_by_slug('named-slug')).to eq(nil)
+      end
+
+      specify 'error is raised' do
+        expect{ described_class.find_by_slug!('named-slug') }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
