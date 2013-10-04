@@ -31,6 +31,6 @@ module Slugworth
   end
 
   def processed_slug
-    send(slug_attribute).parameterize
+    public_send(slug_attribute).parameterize
   end
 end
