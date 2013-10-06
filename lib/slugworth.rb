@@ -14,8 +14,12 @@ module Slugworth
       self.slug_attribute = slug_attribute
     end
 
-    def find_by_slug(slug)
+    def find_by_slug!(slug)
       find_by!(slug: slug)
+    end
+
+    def find_by_slug(slug)
+      find_by(slug: slug)
     end
   end
 
@@ -27,6 +31,6 @@ module Slugworth
   end
 
   def processed_slug
-    send(slug_attribute).parameterize
+    public_send(slug_attribute).parameterize
   end
 end
