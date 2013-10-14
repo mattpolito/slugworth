@@ -45,7 +45,7 @@ After you `include` the `Slugworth` module, all you need to do is declare what m
 
 This provides most of the default slug functionality you would need.
 
-* A finder `.find_by_slug` is provided. This will, of course, do what you expect and find a single record by the slug attribute provided. However, it will throw an `ActiveRecord::RecordNotFound` exception... if not found.
+* Finders `.find_by_slug` & `.find_by_slug!` are provided. This will, of course, do what you expect and find a single record by the slug attribute provided.
 * `#to_param` has been defined as a paramaterized version of the attribute declared to `slugged_with`.
 * Validations stating that `slug` is present and unique in the database.
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+
+- `#find_by_slug` has been changed to `#find_by_slug` to keep in line with AR
+  finder syntax
+
 ## 1.0.2
 
 - [Bug fix] Bypassing validations for `#find_by_slug` spec in shared example.
