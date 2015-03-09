@@ -4,14 +4,15 @@ module Slugworth
   extend ActiveSupport::Concern
 
   included do
-    cattr_accessor :slug_attribute
+    cattr_accessor :slug_attribute, :slug_scope
     before_validation(:add_slug)
-    validates_uniqueness_of :slug
   end
 
   module ClassMethods
-    def slugged_with(slug_attribute)
+    def slugged_with(slug_attribute, opts={})
       self.slug_attribute = slug_attribute
+      self.slug_scope = opts.delete(:scope)
+      validates_uniqueness_of :slug, scope: slug_scope
     end
 
     def find_by_slug!(slug)

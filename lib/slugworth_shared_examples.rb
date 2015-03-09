@@ -61,3 +61,32 @@ shared_examples_for :has_slug_functionality do
     end
   end
 end
+
+shared_examples_for :has_scoped_slug_functionality do
+  describe "#slug :scope" do
+    context "when slug is already taken on same scope" do
+      before do
+        existing = described_class.new(slug: 'taken-slug', described_class.slug_scope => 1)
+        existing.save(validate: false)
+      end
+
+      specify "object is not valid" do
+        obj = described_class.new(slug: 'taken-slug', described_class.slug_scope => 1)
+        expect(obj).to_not be_valid
+        expect(obj.errors[:slug]).to_not be_empty
+      end
+    end
+
+    context "when slug is already taken on another scope" do
+      before do
+        existing = described_class.new(slug: 'taken-slug', described_class.slug_scope => 1)
+        existing.save(validate: false)
+      end
+
+      specify "object is valid" do
+        obj = described_class.new(slug: 'taken-slug', described_class.slug_scope => 2)
+        expect(obj).to be_valid
+      end
+    end
+  end
+end

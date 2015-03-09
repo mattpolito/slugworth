@@ -49,6 +49,18 @@ This provides most of the default slug functionality you would need.
 * `#to_param` has been defined as a paramaterized version of the attribute declared to `slugged_with`.
 * Validations stating that `slug` is present and unique in the database.
 
+### Scoping uniqueness
+
+By default the slug is unique to the entire table, but you can specify the scope of the uniqueness as the following:
+
+```ruby
+class Product < ActiveRecord::Base
+  include Slugworth
+  belongs_to :user
+  slugged_with :name, scope: :user_id
+end
+```
+
 ## Test Helper
 
 To aid in testing your models that implement the Slugworth functionality, I've added a shared example group that can be added to your test suite. Add this to your `spec_helper.rb`
