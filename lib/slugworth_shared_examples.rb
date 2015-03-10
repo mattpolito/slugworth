@@ -62,6 +62,37 @@ shared_examples_for :has_slug_functionality do
   end
 end
 
+shared_examples_for :has_incremental_slug_functionality do
+  describe "#slug :incremental" do
+    context "when slug is already taken" do
+      before do
+        existing = described_class.new(slug: 'taken-slug')
+        existing.save(validate: false)
+      end
+
+      specify "increments the slug" do
+        obj = described_class.new(name: 'Taken Slug')
+        expect(obj).to be_valid
+        expect(obj.slug).to eq('taken-slug-1')
+      end
+    end
+    context "when incremented slug is already taken" do
+      before do
+        existing = described_class.new(slug: 'taken-slug')
+        existing.save(validate: false)
+        existing = described_class.new(slug: 'taken-slug-1')
+        existing.save(validate: false)
+      end
+
+      specify "increments the slug" do
+        obj = described_class.new(name: 'Taken Slug')
+        expect(obj).to be_valid
+        expect(obj.slug).to eq('taken-slug-2')
+      end
+    end
+  end
+end
+
 shared_examples_for :has_scoped_slug_functionality do
   describe "#slug :scope" do
     context "when slug is already taken on same scope" do
@@ -86,6 +117,49 @@ shared_examples_for :has_scoped_slug_functionality do
       specify "object is valid" do
         obj = described_class.new(slug: 'taken-slug', described_class.slug_scope => 2)
         expect(obj).to be_valid
+      end
+    end
+  end
+end
+
+shared_examples_for :has_incremental_scoped_slug_functionality do
+  describe "#slug :incremental" do
+    context "when slug is already taken" do
+      before do
+        existing = described_class.new(slug: 'taken-slug', described_class.slug_scope => 1)
+        existing.save(validate: false)
+      end
+
+      specify "increments the slug" do
+        obj = described_class.new(name: 'Taken Slug', described_class.slug_scope => 1)
+        expect(obj).to be_valid
+        expect(obj.slug).to eq('taken-slug-1')
+      end
+    end
+    context "when incremented slug is already taken" do
+      before do
+        existing = described_class.new(slug: 'taken-slug', described_class.slug_scope => 1)
+        existing.save(validate: false)
+        existing = described_class.new(slug: 'taken-slug-1', described_class.slug_scope => 1)
+        existing.save(validate: false)
+      end
+
+      specify "increments the slug" do
+        obj = described_class.new(name: 'Taken Slug', described_class.slug_scope => 1)
+        expect(obj).to be_valid
+        expect(obj.slug).to eq('taken-slug-2')
+      end
+    end
+    context "when slug is already taken in another scope" do
+      before do
+        existing = described_class.new(slug: 'taken-slug', described_class.slug_scope => 1)
+        existing.save(validate: false)
+      end
+
+      specify "does not increment the slug" do
+        obj = described_class.new(name: 'Taken Slug', described_class.slug_scope => 2)
+        expect(obj).to be_valid
+        expect(obj.slug).to eq('taken-slug')
       end
     end
   end

@@ -61,6 +61,23 @@ class Product < ActiveRecord::Base
 end
 ```
 
+### Incremental slugs
+
+If another record already exists with the same slug it will generate an uniqueness validation error, but if incremental slugs is enabled, then it will append an incremented number to the slug:
+
+```ruby
+class User < ActiveRecord::Base
+  include Slugworth
+  slugged_with :name, incremental: true
+end
+
+User.create(name: 'Jack')
+=> User(id: 1, name: 'Jack', slug: 'jack')
+
+User.create(name: 'Jack')
+=> User(id: 2, name: 'Jack', slug: 'jack-1')
+```
+
 ## Test Helper
 
 To aid in testing your models that implement the Slugworth functionality, I've added a shared example group that can be added to your test suite. Add this to your `spec_helper.rb`
