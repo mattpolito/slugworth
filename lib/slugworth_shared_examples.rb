@@ -62,6 +62,25 @@ shared_examples_for :has_slug_functionality do
   end
 end
 
+shared_examples_for :has_updatable_slug_functionality do
+  describe "#slug :updatable" do
+    let!(:existing) { described_class.create(described_class.slug_attribute => 'Name') }
+    context "when attribute is changed" do
+      specify "updates the slug" do
+        existing[described_class.slug_attribute] = 'New Name'
+        expect(existing).to be_valid
+        expect(existing.slug).to eq('new-name')
+      end
+    end
+    context "when attribute is not changed" do
+      specify "does not update the slug" do
+        expect(existing).to be_valid
+        expect(existing.slug).to eq('name')
+      end
+    end
+  end
+end
+
 shared_examples_for :has_incremental_slug_functionality do
   describe "#slug :incremental" do
     context "when slug is already taken" do

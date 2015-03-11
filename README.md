@@ -61,6 +61,23 @@ class Product < ActiveRecord::Base
 end
 ```
 
+### Updating slugs
+
+Sometimes you want to update the slug if the attribute is changed.
+
+```ruby
+class User < ActiveRecord::Base
+  include Slugworth
+  slugged_with :name, updatable: true
+end
+
+user = User.create(name: 'Jack')
+=> User(id: 1, name: 'Jack', slug: 'jack')
+
+user.update_attribute(:name, 'John')
+=> User(id: 1, name: 'John', slug: 'john')
+```
+
 ### Incremental slugs
 
 If another record already exists with the same slug it will generate an uniqueness validation error, but if incremental slugs is enabled, then it will append an incremented number to the slug:
