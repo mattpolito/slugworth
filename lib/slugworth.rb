@@ -54,7 +54,9 @@ module Slugworth
 
   def matching_slugs
     table = self.class.arel_table
+    primary_key = self.class.primary_key
     query = table[:slug].matches("#{parameterized_slug}%")
+    query = query.and(table[primary_key].not_eq(read_attribute(primary_key))) unless new_record?
     Array.wrap(slug_scope).each do |scope|
       query = query.and(table[scope].eq(read_attribute(scope)))
     end

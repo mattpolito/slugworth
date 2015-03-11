@@ -90,6 +90,15 @@ shared_examples_for :has_incremental_slug_functionality do
         expect(obj.slug).to eq('taken-slug-2')
       end
     end
+    context "when existing slug is reset" do
+      let!(:existing) { described_class.create(described_class.slug_attribute => 'New Name') }
+
+      specify "does not increment the slug" do
+        existing.slug = nil
+        expect(existing).to be_valid
+        expect(existing.slug).to eq('new-name')
+      end
+    end
   end
 end
 
