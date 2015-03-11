@@ -25,6 +25,16 @@ describe IncrementalUser do
   it_behaves_like :has_incremental_slug_functionality
 end
 
+class UpdatableUser < ActiveRecord::Base
+  self.table_name = 'users'
+  include Slugworth
+  slugged_with :name, updatable: true
+end
+
+describe UpdatableUser do
+  it_behaves_like :has_updatable_slug_functionality
+end
+
 class ScopedUser < ActiveRecord::Base
   self.table_name = 'users'
   include Slugworth

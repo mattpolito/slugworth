@@ -62,6 +62,25 @@ shared_examples_for :has_slug_functionality do
   end
 end
 
+shared_examples_for :has_updatable_slug_functionality do
+  describe "#slug :updatable" do
+    let!(:existing) { described_class.create(described_class.slug_attribute => 'Name') }
+    context "when attribute is changed" do
+      specify "updates the slug" do
+        existing[described_class.slug_attribute] = 'New Name'
+        expect(existing).to be_valid
+        expect(existing.slug).to eq('new-name')
+      end
+    end
+    context "when attribute is not changed" do
+      specify "does not update the slug" do
+        expect(existing).to be_valid
+        expect(existing.slug).to eq('name')
+      end
+    end
+  end
+end
+
 shared_examples_for :has_incremental_slug_functionality do
   describe "#slug :incremental" do
     context "when slug is already taken" do
@@ -71,7 +90,7 @@ shared_examples_for :has_incremental_slug_functionality do
       end
 
       specify "increments the slug" do
-        obj = described_class.new(name: 'Taken Slug')
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug')
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug-1')
       end
@@ -85,9 +104,18 @@ shared_examples_for :has_incremental_slug_functionality do
       end
 
       specify "increments the slug" do
-        obj = described_class.new(name: 'Taken Slug')
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug')
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug-2')
+      end
+    end
+    context "when existing slug is reset" do
+      let!(:existing) { described_class.create(described_class.slug_attribute => 'New Name') }
+
+      specify "does not increment the slug" do
+        existing.slug = nil
+        expect(existing).to be_valid
+        expect(existing.slug).to eq('new-name')
       end
     end
   end
@@ -131,7 +159,7 @@ shared_examples_for :has_incremental_scoped_slug_functionality do
       end
 
       specify "increments the slug" do
-        obj = described_class.new(name: 'Taken Slug', described_class.slug_scope => 1)
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug', described_class.slug_scope => 1)
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug-1')
       end
@@ -145,7 +173,7 @@ shared_examples_for :has_incremental_scoped_slug_functionality do
       end
 
       specify "increments the slug" do
-        obj = described_class.new(name: 'Taken Slug', described_class.slug_scope => 1)
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug', described_class.slug_scope => 1)
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug-2')
       end
@@ -157,7 +185,7 @@ shared_examples_for :has_incremental_scoped_slug_functionality do
       end
 
       specify "does not increment the slug" do
-        obj = described_class.new(name: 'Taken Slug', described_class.slug_scope => 2)
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug', described_class.slug_scope => 2)
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug')
       end

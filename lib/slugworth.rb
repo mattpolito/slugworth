@@ -4,7 +4,7 @@ module Slugworth
   extend ActiveSupport::Concern
 
   included do
-    cattr_accessor :slug_attribute, :slug_scope, :slug_incremental
+    cattr_accessor :slug_attribute, :slug_scope, :slug_incremental, :slug_updatable
     before_validation(:add_slug)
   end
 
@@ -13,6 +13,7 @@ module Slugworth
       self.slug_attribute = slug_attribute
       self.slug_scope = opts.delete(:scope)
       self.slug_incremental = opts.delete(:incremental)
+      self.slug_updatable = opts.delete(:updatable)
       validates_uniqueness_of :slug, scope: slug_scope
     end
 
@@ -29,7 +30,11 @@ module Slugworth
 
   private
   def add_slug
-    self.slug = processed_slug unless slug.present?
+    self.slug = processed_slug if generate_slug?
+  end
+
+  def generate_slug?
+    !slug.present? || slug_updatable && changes[slug_attribute].present?
   end
 
   def processed_slug
@@ -54,7 +59,9 @@ module Slugworth
 
   def matching_slugs
     table = self.class.arel_table
+    primary_key = self.class.primary_key
     query = table[:slug].matches("#{parameterized_slug}%")
+    query = query.and(table[primary_key].not_eq(read_attribute(primary_key))) unless new_record?
     Array.wrap(slug_scope).each do |scope|
       query = query.and(table[scope].eq(read_attribute(scope)))
     end
