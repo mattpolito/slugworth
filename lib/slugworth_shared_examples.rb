@@ -71,7 +71,7 @@ shared_examples_for :has_incremental_slug_functionality do
       end
 
       specify "increments the slug" do
-        obj = described_class.new(name: 'Taken Slug')
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug')
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug-1')
       end
@@ -85,7 +85,7 @@ shared_examples_for :has_incremental_slug_functionality do
       end
 
       specify "increments the slug" do
-        obj = described_class.new(name: 'Taken Slug')
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug')
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug-2')
       end
@@ -131,7 +131,7 @@ shared_examples_for :has_incremental_scoped_slug_functionality do
       end
 
       specify "increments the slug" do
-        obj = described_class.new(name: 'Taken Slug', described_class.slug_scope => 1)
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug', described_class.slug_scope => 1)
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug-1')
       end
@@ -145,7 +145,7 @@ shared_examples_for :has_incremental_scoped_slug_functionality do
       end
 
       specify "increments the slug" do
-        obj = described_class.new(name: 'Taken Slug', described_class.slug_scope => 1)
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug', described_class.slug_scope => 1)
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug-2')
       end
@@ -157,7 +157,7 @@ shared_examples_for :has_incremental_scoped_slug_functionality do
       end
 
       specify "does not increment the slug" do
-        obj = described_class.new(name: 'Taken Slug', described_class.slug_scope => 2)
+        obj = described_class.new(described_class.slug_attribute => 'Taken Slug', described_class.slug_scope => 2)
         expect(obj).to be_valid
         expect(obj.slug).to eq('taken-slug')
       end
