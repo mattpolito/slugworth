@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+- Uniqueness scoping for a slug
+- Auto incrementing of slug
+- Slugs can be monitored for updates
+
 ## 1.1.0
 
 - `#find_by_slug` has been changed to `#find_by_slug` to keep in line with AR
