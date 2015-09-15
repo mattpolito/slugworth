@@ -8,7 +8,7 @@ module Slugworth
     before_validation(:add_slug)
   end
 
-  class_methods do
+  module ClassMethods
     def slugged_with(slug_attribute, opts = {})
       self.slug_attribute   = slug_attribute
       self.slug_scope       = opts.delete(:scope)
