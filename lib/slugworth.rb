@@ -38,7 +38,7 @@ module Slugworth
   end
 
   def processed_slug
-    slug_incremental ?  process_incremental_slug : parameterized_slug
+    slug_incremental ? process_incremental_slug : parameterized_slug
   end
 
   def parameterized_slug
