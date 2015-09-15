@@ -29,6 +29,7 @@ module Slugworth
   def to_param; slug; end
 
   private
+
   def add_slug
     self.slug = processed_slug if generate_slug?
   end
