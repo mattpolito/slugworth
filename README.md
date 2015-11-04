@@ -41,12 +41,12 @@ class User < ActiveRecord::Base
 end
 ```
 
-After you `include` the `Slugworth` module, all you need to do is declare what method will be used to create the slug. The method passed to `slugged_with` will then be paramterized.
+After you `include` the `Slugworth` module, all you need to do is declare what method will be used to create the slug. The method passed to `slugged_with` will then be parameterized.
 
 This provides most of the default slug functionality you would need.
 
 * Finders `.find_by_slug` & `.find_by_slug!` are provided. This will, of course, do what you expect and find a single record by the slug attribute provided.
-* `#to_param` has been defined as a paramaterized version of the attribute declared to `slugged_with`.
+* `#to_param` has been defined as a parameterized version of the attribute declared to `slugged_with`.
 * Validations stating that `slug` is present and unique in the database.
 
 ### Scoping uniqueness
