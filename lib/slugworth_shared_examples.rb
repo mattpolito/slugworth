@@ -1,10 +1,16 @@
 shared_examples_for :has_slug_functionality do
   describe "#slug" do
     context "when no slug is set" do
-      specify 'slug is generated' do
+      specify 'slug is generated with slug attribute' do
         obj = described_class.new(described_class.slug_attribute => 'Generated slug')
         obj.valid?
         expect(obj.slug).to eq('generated-slug')
+      end
+
+      specify 'slug is not generated with no slug attribute' do
+        obj = described_class.new
+        obj.valid?
+        expect(obj.slug).to be_nil
       end
     end
 
