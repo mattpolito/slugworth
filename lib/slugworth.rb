@@ -5,7 +5,7 @@ module Slugworth
 
   included do
     cattr_accessor :slug_attribute, :slug_scope, :slug_incremental, :slug_updatable
-    before_validation(:add_slug)
+    before_validation(:add_slug, if: :slug_attribute_value)
   end
 
   module ClassMethods
@@ -38,12 +38,16 @@ module Slugworth
     !slug.present? || slug_updatable && changes[slug_attribute].present?
   end
 
+  def slug_attribute_value
+    public_send(slug_attribute)
+  end
+
   def processed_slug
     slug_incremental ? process_incremental_slug : parameterized_slug
   end
 
   def parameterized_slug
-    public_send(slug_attribute).parameterize
+    slug_attribute_value.parameterize
   end
 
   def process_incremental_slug
