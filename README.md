@@ -124,3 +124,10 @@ This will add the same specs to your model that get run on Slugworth itself!
 * [Rye Mason][] for the fantastic heading image.
 
 [Rye Mason]: https://github.com/ryenotbread
+
+## About
+
+[![Hashrocket logo](https://hashrocket.com/hashrocket_logo.svg)](https://hashrocket.com)
+
+Slugworth is supported by the team at [Hashrocket, a
+multidisciplinary design and development consultancy](https://hashrocket.com). If you'd like to [work with us](https://hashrocket.com/contact-us/hire-us) or [join our team](https://hashrocket.com/contact-us/jobs), don't hesitate to get in touch.
