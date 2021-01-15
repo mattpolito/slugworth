@@ -15,7 +15,7 @@ on:
 
 jobs:
   test:
-    if: "contains(github.event.commits[0].message, '[ci skip]') == false"
+    if: "contains(github.event.commits[0].message, '[ci skip]') == false || contains(github.event.commits[0].message, '[skip ci]') == false"
     runs-on: ubuntu-latest
     strategy:
       matrix:
