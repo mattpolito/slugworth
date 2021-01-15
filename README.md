@@ -1,8 +1,7 @@
 ![Slugworth](http://f.cl.ly/items/3T1K3g040S0u2l0G0d3V/slugworth_header.png)
 
 [![Gem Version](http://img.shields.io/gem/v/slugworth.svg?style=flat)](http://badge.fury.io/rb/slugworth)
-[![Build Status](http://img.shields.io/travis/mattpolito/slugworth/master.svg?style=flat)](https://travis-ci.org/mattpolito/slugworth)
-[![Code Climate](http://img.shields.io/codeclimate/github/mattpolito/slugworth.svg?style=flat)](https://codeclimate.com/github/mattpolito/slugworth)
+[![Build Status](https://img.shields.io/github/workflow/status/mattpolito/slugworth/CI)](https://github.com/mattpolito/slugworth/actions?query=workflow%3ACI)
 
 Simple slug functionality for your ActiveRecord objects
 
