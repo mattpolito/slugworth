@@ -1,9 +1,9 @@
-require 'rspec'
-require 'database_cleaner'
-require 'active_record'
+require "rspec"
+require "database_cleaner"
+require "active_record"
 
 ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3', database: ':memory:'
+  adapter: "sqlite3", database: ":memory:"
 )
 
 RSpec.configure do |config|

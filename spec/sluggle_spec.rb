@@ -1,6 +1,6 @@
-require 'spec_helper'
-require 'slugworth_shared_examples'
-require 'slugworth'
+require "spec_helper"
+require "slugworth_shared_examples"
+require "slugworth"
 
 ActiveRecord::Base.connection.execute(
   %{CREATE TABLE users (id INTEGER PRIMARY KEY, name STRING, slug STRING, age INTEGER);}
@@ -16,7 +16,7 @@ describe User do
 end
 
 class IncrementalUser < ActiveRecord::Base
-  self.table_name = 'users'
+  self.table_name = "users"
   include Slugworth
   slugged_with :name, incremental: true
 end
@@ -26,7 +26,7 @@ describe IncrementalUser do
 end
 
 class UpdatableUser < ActiveRecord::Base
-  self.table_name = 'users'
+  self.table_name = "users"
   include Slugworth
   slugged_with :name, updatable: true
 end
@@ -36,7 +36,7 @@ describe UpdatableUser do
 end
 
 class ScopedUser < ActiveRecord::Base
-  self.table_name = 'users'
+  self.table_name = "users"
   include Slugworth
   slugged_with :name, scope: :age
 end
@@ -46,7 +46,7 @@ describe ScopedUser do
 end
 
 class IncrementalScopedUser < ActiveRecord::Base
-  self.table_name = 'users'
+  self.table_name = "users"
   include Slugworth
   slugged_with :name, scope: :age, incremental: true
 end

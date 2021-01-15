@@ -10,10 +10,10 @@ module Slugworth
 
   module ClassMethods
     def slugged_with(slug_attribute, opts = {})
-      self.slug_attribute   = slug_attribute
-      self.slug_scope       = opts.delete(:scope)
+      self.slug_attribute = slug_attribute
+      self.slug_scope = opts.delete(:scope)
       self.slug_incremental = opts.delete(:incremental)
-      self.slug_updatable   = opts.delete(:updatable)
+      self.slug_updatable = opts.delete(:updatable)
       validates_uniqueness_of :slug, scope: slug_scope
     end
 
@@ -26,7 +26,9 @@ module Slugworth
     end
   end
 
-  def to_param; slug; end
+  def to_param
+    slug
+  end
 
   private
 
