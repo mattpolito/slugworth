@@ -43,7 +43,7 @@ shared_examples_for :has_slug_functionality do
     end
   end
 
-  describe ".find_by_slug" do
+  describe ".slugged" do
     context "when record is available to be found" do
       before do
         record = described_class.new(slug: "named-slug")
@@ -51,18 +51,18 @@ shared_examples_for :has_slug_functionality do
       end
 
       specify "record is returned" do
-        record = described_class.find_by_slug("named-slug")
+        record = described_class.slugged("named-slug")
         expect(record).to be_present
       end
     end
 
     context "when record is not found" do
       specify "nil is returned" do
-        expect(described_class.find_by_slug("named-slug")).to eq(nil)
+        expect(described_class.slugged("named-slug")).to eq(nil)
       end
 
       specify "error is raised" do
-        expect { described_class.find_by_slug!("named-slug") }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { described_class.slugged!("named-slug") }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end

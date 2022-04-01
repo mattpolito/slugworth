@@ -17,12 +17,22 @@ module Slugworth
       validates_uniqueness_of :slug, scope: slug_scope
     end
 
-    def find_by_slug!(slug)
+    def slugged!(slug)
       find_by!(slug: slug)
     end
 
-    def find_by_slug(slug)
+    def slugged(slug)
       find_by(slug: slug)
+    end
+
+    def find_by_slug!(slug)
+      ActiveSupport::Deprecation.warn(".find_by_slug! will be removed in next version, please use .slugged!")
+      slugged!(slug)
+    end
+
+    def find_by_slug(slug)
+      ActiveSupport::Deprecation.warn(".find_by_slug will be removed in next version, please use .slugged")
+      slugged(slug)
     end
   end
 
